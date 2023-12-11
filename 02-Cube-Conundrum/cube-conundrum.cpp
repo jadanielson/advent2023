@@ -10,9 +10,14 @@ int main(){
     int totalBlue = 14;
 
     int gameSum = 0;
+    int gamePowerSum = 0;
 
     for (string line; getline(cin, line);) {
         bool gamePossible = true;
+        int gamePower = 0;
+        int minRed = 0;
+        int minGreen = 0;
+        int minBlue = 0;
         string gameId;
         stringstream input(line);
         getline(input, gameId, ':');
@@ -32,16 +37,16 @@ int main(){
                 int colorNum = stoi(colorNumStr);
                 string colorName = color.substr(color.find_first_of(' ',1)+1);
                 if (colorName == "red") {
-                    if (colorNum > totalRed) {
-                        gamePossible = false;
+                    if (colorNum > minRed) {
+                        minRed = colorNum;
                     }
                 } else if (colorName == "green") {
-                    if (colorNum > totalGreen) {
-                        gamePossible = false;
+                    if (colorNum > minGreen) {
+                        minGreen = colorNum;
                     }
                 } else if (colorName == "blue") {
-                    if (colorNum > totalBlue) {
-                        gamePossible = false;
+                    if (colorNum > minBlue) {
+                        minBlue = colorNum;
                     }
                 } else {
                     cout << "UNKNOWN COLOR: " << colorName <<  " in Game " << gameNum << "!" << endl;
@@ -49,16 +54,29 @@ int main(){
             }
 
         }
-
+        if (minRed > totalRed) {
+            gamePossible = false;
+        } else if (minGreen > totalGreen) {
+            gamePossible = false;
+        } else if (minBlue > totalBlue) {
+            gamePossible = false;
+        }
         if (gamePossible) {
-            cout << " Possible" << endl;
+            cout << " Possible";
             gameSum += gameNum;
         } else {
-            cout << " Impossible" << endl;
+            cout << " Impossible";
         }
+
+        //Calculate game power
+        gamePower = minRed * minGreen * minBlue;
+        cout << "   Game Power: " << gamePower << endl;
+        gamePowerSum += gamePower;
+
     }
     
     cout << "Sum of Ids of possible games is: " << gameSum << endl;
+    cout << "Summ of game power is: " << gamePowerSum << endl;
 
 
 
