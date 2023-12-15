@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <vector>
+
 
 
 class scratchcard{
@@ -7,6 +9,6 @@ class scratchcard{
         scratchcard(std::string line);
         int points();
     private:
-        int winningNumbers[10];
-        int yourNumbers[25];
+        std::vector<int> winningNumbers;
+        std::vector<int> yourNumbers;
 };
