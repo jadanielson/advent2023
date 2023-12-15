@@ -38,10 +38,27 @@ int scratchcard::points(){
         }
     }
     
-    
+
     if (numMatches > 0) {
         return pow(2, numMatches - 1);
     } else {
         return 0;
     }
+}
+
+int scratchcard::matches(){
+    int numMatches = 0;
+
+    //Check each of yourNumbers to see if it matches any of winningNumbers. Increment numMatches if so.
+    for (int i = 0; i < yourNumbers.size(); i++) {
+        for (int j = 0; j < winningNumbers.size(); j++) {
+            if (yourNumbers[i] == winningNumbers[j]) {
+                numMatches++;
+                break;
+            }
+        }
+    }
+    
+    
+    return numMatches;
 }
