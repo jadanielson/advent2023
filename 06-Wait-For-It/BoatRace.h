@@ -2,10 +2,10 @@
 
 class BoatRace {
  private:
-  int time;
-  int distanceToBeat;
+  long int time;
+  long int distanceToBeat;
 
  public:
-  BoatRace(int t, int d);
-  int numWinningCombinations();
+  BoatRace(long int t, long int d);
+  long int numWinningCombinations();
 };

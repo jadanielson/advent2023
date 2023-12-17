@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <iostream>
 #include <vector>
 
@@ -6,6 +7,7 @@
 using namespace std;
 
 vector<int> numbersFromLine(string line);
+long int singleNumberFromLine(string line);
 
 int main() {
   // Get time and distance lines from cin
@@ -27,6 +29,13 @@ int main() {
 
   // Output sum
   cout << "Total possible winning moves: " << prodWins << endl;
+
+  // Only one Race
+  long int singleTime, singleDistance;
+  singleTime = singleNumberFromLine(timeLine);
+  singleDistance = singleNumberFromLine(distanceLine);
+
+  cout << "Number of ways to win single race: " << BoatRace(singleTime, singleDistance).numWinningCombinations() << endl;
 }
 
 vector<int> numbersFromLine(string line) {
@@ -38,4 +47,10 @@ vector<int> numbersFromLine(string line) {
     numbers.push_back(stoi(line.substr(0, pos)));
   }
   return numbers;
+}
+
+long int singleNumberFromLine(string line) {
+  line = line.substr(line.find_first_of("0123456789"));
+  line.erase(remove(line.begin(), line.end(), ' '), line.end());
+  return stol(line);
 }

@@ -1,15 +1,15 @@
 #include "BoatRace.h"
 
-BoatRace::BoatRace(int t, int d) {
+BoatRace::BoatRace(long int t, long int d) {
   time = t;
   distanceToBeat = d;
 }
 
-int BoatRace::numWinningCombinations() {
-  int numWins = 0;
-  for (int speed = 0; speed < time; speed++) {
-    int travelTime = time - speed;
-    int distance = speed * travelTime;
+long int BoatRace::numWinningCombinations() {
+  long int numWins = 0;
+  for (long int speed = 0; speed < time; speed++) {
+    long int travelTime = time - speed;
+    long int distance = speed * travelTime;
     if (distance > distanceToBeat) {
       numWins++;
     }
