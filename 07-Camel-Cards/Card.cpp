@@ -8,7 +8,7 @@ Card::Card(char c) {
   } else if (c == 'Q') {
     cardValue = 12;
   } else if (c == 'J') {
-    cardValue = 11;
+    cardValue = 1;  // Changed from 11 to 1 for new Joker rule
   } else if (c == 'T') {
     cardValue = 10;
   } else {

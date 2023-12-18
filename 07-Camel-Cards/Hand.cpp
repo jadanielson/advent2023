@@ -18,20 +18,22 @@ Hand::handType Hand::findHandType() {
     int cardValue = cards[i].value();
     cardCounts[cardValue]++;
   }
+  int numJokers = cardCounts[1];  // Get number of Jokers and remove them from the counts
+  cardCounts[1] = 0;
   cardCounts.erase(std::remove(cardCounts.begin(), cardCounts.end(), 0), cardCounts.end());
   std::sort(cardCounts.rbegin(), cardCounts.rend());
 
-  if (cardCounts[0] == 5) {
+  if (cardCounts[0] + numJokers == 5) {
     return fiveOfAKind;
-  } else if (cardCounts[0] == 4) {
+  } else if (cardCounts[0] + numJokers == 4) {
     return fourOfAKind;
-  } else if (cardCounts[0] == 3 && cardCounts[1] == 2) {
+  } else if (cardCounts[0] + numJokers == 3 && cardCounts[1] == 2) {
     return fullHouse;
-  } else if (cardCounts[0] == 3) {
+  } else if (cardCounts[0] + numJokers == 3) {
     return threeOfAKind;
-  } else if (cardCounts[0] == 2 && cardCounts[1] == 2) {
+  } else if (cardCounts[0] + numJokers == 2 && cardCounts[1] == 2) {
     return twoPair;
-  } else if (cardCounts[0] == 2) {
+  } else if (cardCounts[0] + numJokers == 2) {
     return onePair;
   } else {
     return highCard;
